@@ -1,0 +1,57 @@
+# Project: Checkers
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = Checkers_private.res
+OBJ      = Main.o Modules/Menu.o Modules/Globals.o Modules/Utility.o Modules/Game.o Modules/Credits.o Modules/Settings.o Modules/FileSystem.o Modules/GameLogic.o $(RES)
+LINKOBJ  = Main.o Modules/Menu.o Modules/Globals.o Modules/Utility.o Modules/Game.o Modules/Credits.o Modules/Settings.o Modules/FileSystem.o Modules/GameLogic.o $(RES)
+LIBS     = -L"D:/Programy/msys64/mingw64/lib" -L"D:/Programy/msys64/mingw64/x86_64-w64-mingw32/lib" -lSDL2 -lSDL2_ttf -mwindows
+INCS     = -I"D:/Programy/msys64/mingw64/include" -I"D:/Programy/msys64/mingw64/include/boost-1_85" -I"D:/Programy/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include"
+CXXINCS  = -I"D:/Programy/msys64/mingw64/include" -I"D:/Programy/msys64/mingw64/include/boost-1_85" -I"D:/Programy/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include" -I"D:/Programy/msys64/mingw64/include/c++/14.1.0"
+BIN      = Checkers.exe
+CXXFLAGS = $(CXXINCS) -Wall -Wno-sign-compare -std=c++17 -O2 -Wl,--stack,268435456
+CFLAGS   = $(INCS) -Wall -Wno-sign-compare -std=c++17 -O2 -Wl,--stack,268435456
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+Main.o: Main.cpp
+	$(CPP) -c Main.cpp -o Main.o $(CXXFLAGS)
+
+Modules/Menu.o: Modules/Menu.cpp
+	$(CPP) -c Modules/Menu.cpp -o Modules/Menu.o $(CXXFLAGS)
+
+Modules/Globals.o: Modules/Globals.cpp
+	$(CPP) -c Modules/Globals.cpp -o Modules/Globals.o $(CXXFLAGS)
+
+Modules/Utility.o: Modules/Utility.cpp
+	$(CPP) -c Modules/Utility.cpp -o Modules/Utility.o $(CXXFLAGS)
+
+Modules/Game.o: Modules/Game.cpp
+	$(CPP) -c Modules/Game.cpp -o Modules/Game.o $(CXXFLAGS)
+
+Modules/Credits.o: Modules/Credits.cpp
+	$(CPP) -c Modules/Credits.cpp -o Modules/Credits.o $(CXXFLAGS)
+
+Modules/Settings.o: Modules/Settings.cpp
+	$(CPP) -c Modules/Settings.cpp -o Modules/Settings.o $(CXXFLAGS)
+
+Modules/FileSystem.o: Modules/FileSystem.cpp
+	$(CPP) -c Modules/FileSystem.cpp -o Modules/FileSystem.o $(CXXFLAGS)
+
+Modules/GameLogic.o: Modules/GameLogic.cpp
+	$(CPP) -c Modules/GameLogic.cpp -o Modules/GameLogic.o $(CXXFLAGS)
+
+Checkers_private.res: Checkers_private.rc 
+	$(WINDRES) -i Checkers_private.rc --input-format=rc -o Checkers_private.res -O coff 
+
