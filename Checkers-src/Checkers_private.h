@@ -5,19 +5,19 @@
 #define CHECKERS_PRIVATE_H
 
 /* VERSION DEFINITIONS */
-#define VER_STRING	"1.0.0.594"
+#define VER_STRING	"1.0.0.596"
 #define VER_MAJOR	1
 #define VER_MINOR	0
 #define VER_RELEASE	0
-#define VER_BUILD	594
+#define VER_BUILD	596
 #define COMPANY_NAME	"Kacper Skaza"
-#define FILE_VERSION	"1.0.0.594"
+#define FILE_VERSION	"1.0.0.596"
 #define FILE_DESCRIPTION	">> Checkers << made by Kacper Skaza"
 #define INTERNAL_NAME	""
 #define LEGAL_COPYRIGHT	"© 2024 Kacper Skaza"
 #define LEGAL_TRADEMARKS	""
 #define ORIGINAL_FILENAME	"Checkers.exe"
 #define PRODUCT_NAME	"Checkers"
-#define PRODUCT_VERSION	"1.0.0.594"
+#define PRODUCT_VERSION	"1.0.0.596"
 
 #endif /*CHECKERS_PRIVATE_H*/
