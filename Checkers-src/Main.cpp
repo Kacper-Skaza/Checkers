@@ -16,7 +16,7 @@
 
 /*
 	Flagi konsolidatora wymagane do kompilacji:
-	-lSDL2 -lSDL2_ttf
+		-lSDL2 -lSDL2_ttf
 */
 
 // Modu³y ogólne
@@ -129,8 +129,8 @@ int main()
 	int Last_Row=0, Last_Col=0;
 
 	// Obs³uga FPS
-	long long Frame_Start=0, Frame_End=0, Frame_Delay=0;
-	long long Second_Timer=0, Fps_Counter=0;
+	long long Frame_Start=0, Frame_Delay=0;
+	long long Timer_Start=0, Fps_Counter=0;
 	string Fps_Display="0 FPS";
 
 	// Obs³uga pêtli g³ównej
@@ -169,9 +169,9 @@ int main()
 		}
 
 		// Oblicz FPS
-		if (Second_Timer < SDL_GetTicks()-1000 || (Fps_Counter >= g_TargetFPS && DEVELOPER_MODE == false))
+		if (Timer_Start < SDL_GetTicks()-1000 || (Fps_Counter >= g_TargetFPS && DEVELOPER_MODE == false))
 		{
-			Second_Timer = SDL_GetTicks();
+			Timer_Start = SDL_GetTicks();
 			Fps_Display = to_string(Fps_Counter) + " FPS";
 			Fps_Counter = 0;
 			g_RenderFrame = true;
@@ -202,8 +202,7 @@ int main()
 		}
 
 		// FPS
-		Frame_End = SDL_GetTicks();
-		Frame_Delay = floor(1000.0/g_TargetFPS) - (Frame_End-Frame_Start);
+		Frame_Delay = floor(1000.0/g_TargetFPS) - (SDL_GetTicks()-Frame_Start);
 
 		// OpóŸnienie
 		if (Frame_Delay > 2)
@@ -216,10 +215,6 @@ int main()
 
 	// Zwolnij zasoby SDL2
 	Close_SDL();
-
-	// Utwórz autosave jeœli to konieczne
-	if (g_Scene == "game" && g_Turn > 2)
-		Save_game("Autosave");
 
 	// SprawdŸ b³êdy
 	if (error == true)

@@ -53,9 +53,9 @@ void MainField_append(string txt, SDL_Color color)
 // Funkcja odpowiadaj¹ca za rozgrywkê z komputerem
 void AI_turn(int random_num)
 {
-	// Warunek pocz¹tkowy
-	if (g_RedCanMove == false)
-		return;
+	// Czas
+	long long Timer_Start=0, Delay=0;
+	Timer_Start = SDL_GetTicks();
 
 	// Struktury oraz zmienne
 	struct Move
@@ -75,7 +75,7 @@ void AI_turn(int random_num)
 		{
 			if (g_Board[row][col] < 0)
 			{
-				Move_piece(row, col, false);
+				Move_piece(false, row, col);
 
 				if (g_SelectedRow == row && g_SelectedCol == col)
 					for (int roww=0; roww<CELL_NUM; roww++)
@@ -90,23 +90,29 @@ void AI_turn(int random_num)
 	SelectedMove = random_num % AvaibleMoves.size();
 
 	// Kliknij wybrany pionek
-	Move_piece(AvaibleMoves[SelectedMove].FromRow, AvaibleMoves[SelectedMove].FromCol, false);
+	Move_piece(false, AvaibleMoves[SelectedMove].FromRow, AvaibleMoves[SelectedMove].FromCol);
+	for (int row=0; row<CELL_NUM; row++)
+		for (int col=0; col<CELL_NUM; col++)
+			if (row != AvaibleMoves[SelectedMove].ToRow || col != AvaibleMoves[SelectedMove].ToCol)
+				g_SelectedMoves[row][col] = 0;
 	g_RenderFrame = true;
 
 	// OpóŸnienie i flaga
 	g_CanSelect = false;
-	SDL_Delay(800);
+	Delay = 800 - (SDL_GetTicks()-Timer_Start);
+	if (Delay >= 0)
+		SDL_Delay(Delay);
 	g_CanSelect = true;
 
 	// Wykonaj ruch
-	Move_piece(AvaibleMoves[SelectedMove].ToRow, AvaibleMoves[SelectedMove].ToCol, true);
+	Move_piece(true, AvaibleMoves[SelectedMove].ToRow, AvaibleMoves[SelectedMove].ToCol);
 	g_RenderFrame = true;
 }
 
 
 
 // Funkcja poruszaj¹ca pionkami
-void Move_piece(int row, int col, bool Calc_AI)
+void Move_piece(bool calc_AI, int row, int col)
 {
 	if (g_Turn >= 0 && (row >= 0 && row < CELL_NUM) && (col >= 0 && col < CELL_NUM))
 	{
@@ -353,7 +359,7 @@ void Move_piece(int row, int col, bool Calc_AI)
 		}
 
 		// Jeœli komputer ma zagraæ
-		if (g_Turn%2 == 1 && g_VersusAI == true && Calc_AI == true)
+		if (g_Turn%2 == 1 && g_RedCanMove == true && calc_AI == true && g_VersusAI == true)
 		{
 			thread DelayThread(AI_turn, rand());
 			DelayThread.detach();

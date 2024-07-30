@@ -83,6 +83,9 @@ void Load_settings()
 				{
 					if (T[2] != GAME_VERSION)
 					{
+						if (DEVELOPER_MODE == true)
+							cout<<"B³¹d ³adowania GAME_VERSION: "<<T[2]<<endl;
+
 						Save_settings();
 						break;
 					}
@@ -219,6 +222,9 @@ bool Load_game(string FileName)
 				{
 					if (T[2] != GAME_VERSION)
 					{
+						if (DEVELOPER_MODE == true)
+							cout<<"B³¹d ³adowania GAME_VERSION: "<<T[2]<<endl;
+
 						inp.close();
 						return false;
 					}

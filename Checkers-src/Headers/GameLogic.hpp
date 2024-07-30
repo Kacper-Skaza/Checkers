@@ -28,7 +28,7 @@ void MainField_append(string txt, SDL_Color color);
 void AI_turn(int random_num);
 
 // Funkcja poruszaj¹ca pionkami
-void Move_piece(int row, int col, bool Calc_AI);
+void Move_piece(bool calc_AI, int row, int col);
 
 // Funkcja kalkuluj¹ca mo¿liwe ruchy
 void Calculate_moves();

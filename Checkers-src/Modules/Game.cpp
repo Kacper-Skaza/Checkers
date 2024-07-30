@@ -298,12 +298,17 @@ void Game_event(SDL_Event event, bool &quit, bool &error, int &Last_Row, int &La
 
 		if (event.button.button == SDL_BUTTON_LEFT && y-CELL_OFFSET >= 0 && x-CELL_OFFSET >= 0) // Lewy przycisk myszy
 		{
+			int temp = g_Turn;
 			int row = (y-CELL_OFFSET) / CELL_SIZE;
 			int col = (x-CELL_OFFSET) / CELL_SIZE;
 			Last_Row = row;
 			Last_Col = col;
 
-			Move_piece(row, col, true);
+			Move_piece(true, row, col);
+
+			// Utwórz autosave jeœli to konieczne
+			if (g_Turn != temp && g_Turn > 2)
+				Save_game("Autosave");
 		}
 		else if (event.button.button == SDL_BUTTON_RIGHT && g_CanSelect == true) // Prawy przycisk myszy
 		{
@@ -413,6 +418,17 @@ void Game_event(SDL_Event event, bool &quit, bool &error, int &Last_Row, int &La
 
 					if (confirm == true)
 					{
+						if (filesystem::exists("Saves/Autosave.checkers"))
+						{
+							try
+							{
+								filesystem::remove("Saves/Autosave.checkers");
+							}
+							catch (...)
+							{
+								cout<<"B³¹d systemu plików !!!";
+							}
+						}
 						g_Scene = "menu";
 						SDL_PushEvent(&CustomEvent);
 					}
@@ -429,12 +445,17 @@ void Game_event(SDL_Event event, bool &quit, bool &error, int &Last_Row, int &La
 
 		if (event.button.button == SDL_BUTTON_LEFT && y-CELL_OFFSET >= 0 && x-CELL_OFFSET >= 0)
 		{
+			int temp = g_Turn;
 			int row = (y-CELL_OFFSET) / CELL_SIZE;
 			int col = (x-CELL_OFFSET) / CELL_SIZE;
 
 			if (Last_Row != row || Last_Col != col) // Ró¿ny rz¹d lub kolumna
 				if (g_SelectedMoves[row][col] != 0) // Pole na które mo¿na wykonaæ ruch
-					Move_piece(row, col, true);
+					Move_piece(true, row, col);
+
+			// Utwórz autosave jeœli to konieczne
+			if (g_Turn != temp && g_Turn > 2)
+				Save_game("Autosave");
 		}
 	}
 	else if (event.type == SDL_MOUSEMOTION) // Rodzaj kursora

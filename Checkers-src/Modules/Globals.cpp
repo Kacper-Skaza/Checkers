@@ -45,7 +45,7 @@ const int CELL_SIZE = 200;			// Rozmiar pól
 const int CELL_OFFSET = 100;		// Przesuniêcie pól
 const string GAME_NAME = ">> Checkers << made by Kacper Skaza";
 const string GAME_VERSION = "v.1.0.0";
-const string GAME_COPYRIGHT = "© Kacper Skaza 2024";
+const string GAME_COPYRIGHT = "© 2024 Kacper Skaza";
 
 // Zmienne globalne
 long long g_TargetFPS = 60;

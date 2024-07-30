@@ -62,7 +62,7 @@ void Credits_draw()
 			" ",
 			" ",
 			GAME_COPYRIGHT,
-			"All rights reserved"
+			"Apache License 2.0"
 		};
 	}
 	else
@@ -84,7 +84,7 @@ void Credits_draw()
 			" ",
 			" ",
 			GAME_COPYRIGHT,
-			"All rights reserved"
+			"Apache License 2.0"
 		};
 	}
 	for (int i=0; i<Credits_txt.size(); i++)
