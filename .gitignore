@@ -1,3 +1,5 @@
+*.o
+
 Checkers-release/Saves/
 Checkers-src/Saves/
 ToDo.txt
