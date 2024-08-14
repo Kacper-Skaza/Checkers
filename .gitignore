@@ -1,0 +1,12 @@
+# Compilation files
+*.o
+*.res
+
+# IDE files and directories
+*.dev
+*.layout
+*.vscode/
+
+# Project files and directories
+ToDo.txt
+*Saves/

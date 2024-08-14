@@ -1,0 +1,60 @@
+# Project: Checkers
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = Checkers_private.res
+OBJ      = Main.o Src/Globals.o Src/InitClose.o Src/Utility.o Src/Scene/Credits.o Src/Scene/Game.o Src/Scene/Menu.o Src/Scene/Settings.o Src/Game/FileSystem.o Src/Game/GameLogic.o $(RES)
+LINKOBJ  = Main.o Src/Globals.o Src/InitClose.o Src/Utility.o Src/Scene/Credits.o Src/Scene/Game.o Src/Scene/Menu.o Src/Scene/Settings.o Src/Game/FileSystem.o Src/Game/GameLogic.o $(RES)
+LIBS     = -L"D:/Programy/msys64/mingw64/lib" -L"D:/Programy/msys64/mingw64/x86_64-w64-mingw32/lib" -lSDL2 -lSDL2_ttf -mwindows
+INCS     = -I"D:/Programy/msys64/mingw64/include" -I"D:/Programy/msys64/mingw64/include/boost-1_85" -I"D:/Programy/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include"
+CXXINCS  = -I"D:/Programy/msys64/mingw64/include" -I"D:/Programy/msys64/mingw64/include/boost-1_85" -I"D:/Programy/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include" -I"D:/Programy/msys64/mingw64/include/c++/14.1.0"
+BIN      = Checkers.exe
+CXXFLAGS = $(CXXINCS) -Wall -Wno-sign-compare -std=c++17 -O2 -Wl,--stack,268435456
+CFLAGS   = $(INCS) -Wall -Wno-sign-compare -std=c++17 -O2 -Wl,--stack,268435456
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+Main.o: Main.cpp
+	$(CPP) -c Main.cpp -o Main.o $(CXXFLAGS)
+
+Src/Globals.o: Src/Globals.cpp
+	$(CPP) -c Src/Globals.cpp -o Src/Globals.o $(CXXFLAGS)
+
+Src/InitClose.o: Src/InitClose.cpp
+	$(CPP) -c Src/InitClose.cpp -o Src/InitClose.o $(CXXFLAGS)
+
+Src/Utility.o: Src/Utility.cpp
+	$(CPP) -c Src/Utility.cpp -o Src/Utility.o $(CXXFLAGS)
+
+Src/Scene/Credits.o: Src/Scene/Credits.cpp
+	$(CPP) -c Src/Scene/Credits.cpp -o Src/Scene/Credits.o $(CXXFLAGS)
+
+Src/Scene/Game.o: Src/Scene/Game.cpp
+	$(CPP) -c Src/Scene/Game.cpp -o Src/Scene/Game.o $(CXXFLAGS)
+
+Src/Scene/Menu.o: Src/Scene/Menu.cpp
+	$(CPP) -c Src/Scene/Menu.cpp -o Src/Scene/Menu.o $(CXXFLAGS)
+
+Src/Scene/Settings.o: Src/Scene/Settings.cpp
+	$(CPP) -c Src/Scene/Settings.cpp -o Src/Scene/Settings.o $(CXXFLAGS)
+
+Src/Game/FileSystem.o: Src/Game/FileSystem.cpp
+	$(CPP) -c Src/Game/FileSystem.cpp -o Src/Game/FileSystem.o $(CXXFLAGS)
+
+Src/Game/GameLogic.o: Src/Game/GameLogic.cpp
+	$(CPP) -c Src/Game/GameLogic.cpp -o Src/Game/GameLogic.o $(CXXFLAGS)
+
+Checkers_private.res: Checkers_private.rc 
+	$(WINDRES) -i Checkers_private.rc --input-format=rc -o Checkers_private.res -O coff 
+

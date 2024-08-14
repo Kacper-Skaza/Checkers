@@ -1,0 +1,36 @@
+/* THIS FILE WILL BE OVERWRITTEN BY DEV-C++ */
+/* DO NOT EDIT! */
+
+#include <windows.h> // include for version info constants
+
+
+A ICON "Checkers.ico"
+
+//
+// TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
+//
+1 VERSIONINFO
+FILEVERSION 1,0,0,640
+PRODUCTVERSION 1,0,0,640
+FILETYPE VFT_APP
+{
+  BLOCK "StringFileInfo"
+  {
+    BLOCK "040904E4"
+    {
+      VALUE "CompanyName", "Kacper Skaza"
+      VALUE "FileVersion", "1.0.0.640"
+      VALUE "FileDescription", ">> Checkers << made by Kacper Skaza"
+      VALUE "InternalName", ""
+      VALUE "LegalCopyright", "© 2024 Kacper Skaza"
+      VALUE "LegalTrademarks", ""
+      VALUE "OriginalFilename", "Checkers.exe"
+      VALUE "ProductName", ">> Checkers <<"
+      VALUE "ProductVersion", "1.0.0.640"
+    }
+  }
+  BLOCK "VarFileInfo"
+  {
+    VALUE "Translation", 0x0409, 1252
+  }
+}
